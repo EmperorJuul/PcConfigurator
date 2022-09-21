@@ -3,10 +3,8 @@ package nl.belastingdienst.pcconfigurator.Model;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Getter
 @Setter
@@ -20,6 +18,9 @@ public class Psu {
     private String brand;
     private String model;
     private int wattage;
+
+    @OneToMany
+    private List<Pc> pcList;
 
     public Psu() {
     }

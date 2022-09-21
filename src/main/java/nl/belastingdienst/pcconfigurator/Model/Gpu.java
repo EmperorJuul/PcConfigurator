@@ -3,10 +3,8 @@ package nl.belastingdienst.pcconfigurator.Model;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Getter
 @Setter
@@ -23,6 +21,9 @@ public class Gpu {
     private int modelNumber;
     private String suffix;
     private int vram;
+
+    @OneToMany
+    private List<Pc> pcList;
 
 
     public Gpu() {
