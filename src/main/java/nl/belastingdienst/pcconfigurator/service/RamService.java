@@ -32,7 +32,7 @@ public class RamService {
         return fromRamToRamDto(ramRepository.findById(id).orElseThrow(() -> new NotFoundException("No ram found with this id")));
     }
 
-    public ResponseEntity<Object> autoPopulateDatabase(){
+    public void autoPopulateDatabase(){
         Ram ram1 = new Ram("Corsair", "Vengeance Pro", "ddr4", 3600, 16);
         Ram ram2 = new Ram("Corsair", "Vengeance", "ddr4", 3200, 16);
         Ram ram3 = new Ram("GSkill", "Aegis", "ddr4", 3200, 8);
@@ -44,25 +44,25 @@ public class RamService {
         return ResponseEntity.created(null).build();
     }
 
-    public ResponseEntity<Object> newRam(Ram ram){
+    public void newRam(Ram ram){
         ramRepository.save(ram);
         return ResponseEntity.created(null).build();
     }
 
-    public ResponseEntity<Object> updateRam(Long id, Ram newRam){
+    public void updateRam(Long id, Ram newRam){
         Ram ram = ramRepository.findById(id).orElseThrow(() -> new NotFoundException("No ram found with this id"));
         newRam.setId(ram.getId());
         ramRepository.save(newRam);
         return ResponseEntity.ok().build();
     }
 
-    public ResponseEntity<Object> deleteRamById(Long id){
+    public void deleteRamById(Long id){
         Ram ram = ramRepository.findById(id).orElseThrow(() -> new NotFoundException("No ram found with this id"));
         ramRepository.delete(ram);
         return ResponseEntity.ok().build();
     }
 
-    public ResponseEntity<Object> deleteAllRam(){
+    public void deleteAllRam(){
         ramRepository.deleteAll();
         return ResponseEntity.ok().build();
     }

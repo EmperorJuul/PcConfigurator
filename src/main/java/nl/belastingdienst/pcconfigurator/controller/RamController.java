@@ -32,26 +32,31 @@ public class RamController {
 
     @PostMapping("/populate")
     public ResponseEntity<Object> autoPopulateDatabase(){
-        return ramService.autoPopulateDatabase();
+        ramService.autoPopulateDatabase();
+        return ResponseEntity.created(null).build();
     }
 
     @PostMapping
     public ResponseEntity<Object> newRam(@RequestBody Ram ram){
-        return ramService.newRam(ram);
+        ramService.newRam(ram);
+        return ResponseEntity.created(null).build();
     }
 
     @PutMapping
     public ResponseEntity<Object> updateRam(@RequestParam Long id, @RequestBody Ram newRam){
-        return ramService.updateRam(id, newRam);
+        ramService.updateRam(id, newRam);
+        return ResponseEntity.ok().build();
     }
 
     @DeleteMapping
     public ResponseEntity<Object> deleteRamById(@RequestParam Long id){
-        return ramService.deleteRamById(id);
+        ramService.deleteRamById(id);
+        return ResponseEntity.ok().build();
     }
 
     @DeleteMapping("/all")
     public ResponseEntity<Object> deleteAllRam(){
-        return ramService.deleteAllRam();
+        ramService.deleteAllRam();
+        return ResponseEntity.ok().build();
     }
 }
