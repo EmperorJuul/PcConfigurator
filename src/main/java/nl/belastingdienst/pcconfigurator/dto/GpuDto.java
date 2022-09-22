@@ -6,36 +6,32 @@ import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 
-public class CpuDto {
+public class GpuDto {
 
     @NotNull
-    private Long id;
+    private long id;
     private String brand;
     private String productLine;
     private int generation;
-    private int tier;
     private int modelNumber;
     private String suffix;
-    private String socket;
-    private boolean hasIGpu;
+    private int vram;
 
-    public CpuDto(Long id, String brand, String productLine, int generation, int tier, int modelNumber, String suffix, String socket, boolean hasIGpu) {
+    public GpuDto(long id, String brand, String productLine, int generation, int modelNumber, String suffix, int vram) {
         this.id = id;
         this.brand = brand;
         this.productLine = productLine;
         this.generation = generation;
-        this.tier = tier;
         this.modelNumber = modelNumber;
         this.suffix = suffix;
-        this.socket = socket;
-        this.hasIGpu = hasIGpu;
+        this.vram = vram;
     }
 
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -63,14 +59,6 @@ public class CpuDto {
         this.generation = generation;
     }
 
-    public int getTier() {
-        return tier;
-    }
-
-    public void setTier(int tier) {
-        this.tier = tier;
-    }
-
     public int getModelNumber() {
         return modelNumber;
     }
@@ -87,19 +75,11 @@ public class CpuDto {
         this.suffix = suffix;
     }
 
-    public String getSocket() {
-        return socket;
+    public int getVram() {
+        return vram;
     }
 
-    public void setSocket(String socket) {
-        this.socket = socket;
-    }
-
-    public boolean isHasIGpu() {
-        return hasIGpu;
-    }
-
-    public void setHasIGpu(boolean hasIGpu) {
-        this.hasIGpu = hasIGpu;
+    public void setVram(int vram) {
+        this.vram = vram;
     }
 }

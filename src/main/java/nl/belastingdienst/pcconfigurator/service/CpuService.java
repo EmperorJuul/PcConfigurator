@@ -70,8 +70,7 @@ public class CpuService {
                 cpu.getModelNumber(),
                 cpu.getSuffix(),
                 cpu.getSocket(),
-                cpu.isHasIGpu(),
-                cpu.getPcList());
+                cpu.isHasIGpu());
 
         return  cpuDto;
     }

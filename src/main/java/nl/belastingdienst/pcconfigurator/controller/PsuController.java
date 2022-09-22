@@ -1,12 +1,15 @@
 package nl.belastingdienst.pcconfigurator.controller;
 
 import nl.belastingdienst.pcconfigurator.Model.Psu;
+import nl.belastingdienst.pcconfigurator.dto.PsuDto;
 import nl.belastingdienst.pcconfigurator.exception.NotFoundException;
 import nl.belastingdienst.pcconfigurator.repository.PsuRepository;
 import nl.belastingdienst.pcconfigurator.service.PsuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/psu")
@@ -16,13 +19,13 @@ public class PsuController {
     private PsuService psuService;
 
     @GetMapping("/all")
-    public Iterable<Psu> getAllPsu(){
-        return psuService.getAllPsu();
+    public ResponseEntity<List<PsuDto>> getAllPsu(){
+        return ResponseEntity.ok(psuService.getAllPsu());
     }
 
     @GetMapping()
-    public Psu getPsuById(@RequestParam Long id){
-        return psuService.getPsuById(id);
+    public ResponseEntity<PsuDto> getPsuById(@RequestParam Long id){
+        return ResponseEntity.ok(psuService.getPsuById(id));
     }
 
     @PostMapping("/populate")

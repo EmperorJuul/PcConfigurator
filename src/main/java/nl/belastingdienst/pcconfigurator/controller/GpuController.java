@@ -1,12 +1,15 @@
 package nl.belastingdienst.pcconfigurator.controller;
 
 import nl.belastingdienst.pcconfigurator.Model.Gpu;
+import nl.belastingdienst.pcconfigurator.dto.GpuDto;
 import nl.belastingdienst.pcconfigurator.exception.NotFoundException;
 import nl.belastingdienst.pcconfigurator.repository.GpuRepository;
 import nl.belastingdienst.pcconfigurator.service.GpuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping(value = "/gpu")
@@ -16,13 +19,13 @@ public class GpuController {
     private GpuService gpuService;
 
     @GetMapping("/all")
-    public Iterable<Gpu> getAllGpu(){
-        return gpuService.getAllGpu();
+    public ResponseEntity<List<GpuDto>> getAllGpu(){
+        return ResponseEntity.ok(gpuService.getAllGpu());
     }
 
     @GetMapping
-    public Gpu getGpuById(@RequestParam Long id){
-    return gpuService.getGpuById(id);
+    public ResponseEntity<GpuDto> getGpuById(@RequestParam Long id){
+    return ResponseEntity.ok(gpuService.getGpuById(id));
     }
 
     @PostMapping("/populate")

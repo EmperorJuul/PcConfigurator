@@ -2,6 +2,7 @@ package nl.belastingdienst.pcconfigurator.controller;
 
 import nl.belastingdienst.pcconfigurator.Model.Psu;
 import nl.belastingdienst.pcconfigurator.Model.Ram;
+import nl.belastingdienst.pcconfigurator.dto.RamDto;
 import nl.belastingdienst.pcconfigurator.exception.NotFoundException;
 import nl.belastingdienst.pcconfigurator.repository.RamRepository;
 import nl.belastingdienst.pcconfigurator.service.RamService;
@@ -9,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.aspectj.EnableSpringConfigured;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/ram")
@@ -18,13 +21,13 @@ public class RamController {
     private RamService ramService;
 
     @GetMapping("/all")
-    public Iterable<Ram> getAllRam(){
-        return ramService.getAllRam();
+    public ResponseEntity<List<RamDto>> getAllRam(){
+        return ResponseEntity.ok(ramService.getAllRam());
     }
 
     @GetMapping()
-    public Ram getRamById(@RequestParam Long id){
-        return ramService.getRamById(id);
+    public ResponseEntity<RamDto> getRamById(@RequestParam Long id){
+        return ResponseEntity.ok(ramService.getRamById(id));
     }
 
     @PostMapping("/populate")

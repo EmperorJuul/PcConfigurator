@@ -14,7 +14,6 @@ public class Psu {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    //auto generated
     private long id;
     private String brand;
     private String model;

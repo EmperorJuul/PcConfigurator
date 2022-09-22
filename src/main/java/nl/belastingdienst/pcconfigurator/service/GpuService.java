@@ -1,6 +1,7 @@
 package nl.belastingdienst.pcconfigurator.service;
 
 import nl.belastingdienst.pcconfigurator.Model.Gpu;
+import nl.belastingdienst.pcconfigurator.dto.GpuDto;
 import nl.belastingdienst.pcconfigurator.exception.NotFoundException;
 import nl.belastingdienst.pcconfigurator.repository.GpuRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,18 +9,26 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 public class GpuService {
 
     @Autowired
     private GpuRepository gpuRepository;
 
-    public Iterable<Gpu> getAllGpu(){
-        return gpuRepository.findAll();
+    public List<GpuDto> getAllGpu(){
+        List<Gpu> gpuList = gpuRepository.findAll();
+        List<GpuDto> gpuDtoList = new ArrayList<>();
+        for(Gpu gpu : gpuList){
+            gpuDtoList.add(fromGpuToGpuDto(gpu));
+        }
+        return gpuDtoList;
     }
 
-    public Gpu getGpuById(Long id) {
-        return gpuRepository.findById(id).orElseThrow(() -> new NotFoundException("No gpu found with this id"));
+    public GpuDto getGpuById(Long id) {
+        return fromGpuToGpuDto(gpuRepository.findById(id).orElseThrow(() -> new NotFoundException("No gpu found with this id")));
     }
 
     public void autoPopulateDatabase(){
@@ -50,6 +59,19 @@ public class GpuService {
 
     public void deleteAllGpu(){
         gpuRepository.deleteAll();
+    }
+
+    private GpuDto fromGpuToGpuDto(Gpu gpu){
+        GpuDto gpuDto = new GpuDto(
+                gpu.getId(),
+                gpu.getBrand(),
+                gpu.getProductLine(),
+                gpu.getGeneration(),
+                gpu.getModelNumber(),
+                gpu.getSuffix(),
+                gpu.getVram());
+
+        return gpuDto;
     }
 
 }

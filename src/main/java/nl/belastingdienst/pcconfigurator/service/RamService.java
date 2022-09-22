@@ -1,6 +1,7 @@
 package nl.belastingdienst.pcconfigurator.service;
 
 import nl.belastingdienst.pcconfigurator.Model.Ram;
+import nl.belastingdienst.pcconfigurator.dto.RamDto;
 import nl.belastingdienst.pcconfigurator.exception.NotFoundException;
 import nl.belastingdienst.pcconfigurator.repository.RamRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,18 +10,26 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 public class RamService {
 
     @Autowired
     private RamRepository ramRepository;
 
-    public Iterable<Ram> getAllRam(){
-        return ramRepository.findAll();
+    public List<RamDto> getAllRam(){
+        List<Ram> ramList = ramRepository.findAll();
+        List<RamDto> ramDtoList = new ArrayList<>();
+        for(Ram ram: ramList){
+            ramDtoList.add(fromRamToRamDto(ram));
+        }
+        return ramDtoList;
     }
 
-    public Ram getRamById(Long id){
-        return ramRepository.findById(id).orElseThrow(() -> new NotFoundException("No ram found with this id"));
+    public RamDto getRamById(Long id){
+        return fromRamToRamDto(ramRepository.findById(id).orElseThrow(() -> new NotFoundException("No ram found with this id")));
     }
 
     public ResponseEntity<Object> autoPopulateDatabase(){
@@ -56,6 +65,18 @@ public class RamService {
     public ResponseEntity<Object> deleteAllRam(){
         ramRepository.deleteAll();
         return ResponseEntity.ok().build();
+    }
+
+    private RamDto fromRamToRamDto(Ram ram){
+        RamDto ramDto = new RamDto(
+                ram.getId(),
+                ram.getBrand(),
+                ram.getProductLine(),
+                ram.getDdr(),
+                ram.getClockSpeed(),
+                ram.getSize());
+
+        return ramDto;
     }
 
 }
