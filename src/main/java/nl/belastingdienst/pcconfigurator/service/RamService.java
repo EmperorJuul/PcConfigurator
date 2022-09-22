@@ -41,30 +41,25 @@ public class RamService {
         ramRepository.save(ram2);
         ramRepository.save(ram3);
         ramRepository.save(ram4);
-        return ResponseEntity.created(null).build();
     }
 
     public void newRam(Ram ram){
         ramRepository.save(ram);
-        return ResponseEntity.created(null).build();
     }
 
     public void updateRam(Long id, Ram newRam){
         Ram ram = ramRepository.findById(id).orElseThrow(() -> new NotFoundException("No ram found with this id"));
         newRam.setId(ram.getId());
         ramRepository.save(newRam);
-        return ResponseEntity.ok().build();
     }
 
     public void deleteRamById(Long id){
         Ram ram = ramRepository.findById(id).orElseThrow(() -> new NotFoundException("No ram found with this id"));
         ramRepository.delete(ram);
-        return ResponseEntity.ok().build();
     }
 
     public void deleteAllRam(){
         ramRepository.deleteAll();
-        return ResponseEntity.ok().build();
     }
 
     private RamDto fromRamToRamDto(Ram ram){
