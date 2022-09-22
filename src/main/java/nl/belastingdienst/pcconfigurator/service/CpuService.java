@@ -1,11 +1,15 @@
 package nl.belastingdienst.pcconfigurator.service;
 
 import nl.belastingdienst.pcconfigurator.Model.Cpu;
+import nl.belastingdienst.pcconfigurator.dto.CpuDto;
 import nl.belastingdienst.pcconfigurator.exception.NotFoundException;
 import nl.belastingdienst.pcconfigurator.repository.CpuRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class CpuService {
@@ -13,12 +17,17 @@ public class CpuService {
     @Autowired
     private CpuRepository cpuRepository;
 
-    public Iterable<Cpu> getAllCpu() {
-        return cpuRepository.findAll();
+    public List<CpuDto> getAllCpu() {
+        List<Cpu> cpuList = cpuRepository.findAll();
+        List<CpuDto> cpuDtoList = new ArrayList<>();
+        for(Cpu cpu : cpuList){
+            cpuDtoList.add(fromCpuToCpuDto(cpu));
+        }
+        return cpuDtoList;
     }
 
-    public Cpu getCpuById(Long id){
-        return cpuRepository.findById(id).orElseThrow(() -> new NotFoundException("No cpu found with this is"));
+    public CpuDto getCpuById(Long id){
+        return fromCpuToCpuDto(cpuRepository.findById(id).orElseThrow(() -> new NotFoundException("No cpu found with this is")));
     }
 
     public void autoPopulateDatabase() {
@@ -49,6 +58,22 @@ public class CpuService {
 
     public void deleteAllCpu(){
         cpuRepository.deleteAll();
+    }
+
+    private CpuDto fromCpuToCpuDto(Cpu cpu){
+        CpuDto cpuDto = new CpuDto(
+                cpu.getId(),
+                cpu.getBrand(),
+                cpu.getProductLine(),
+                cpu.getGeneration(),
+                cpu.getTier(),
+                cpu.getModelNumber(),
+                cpu.getSuffix(),
+                cpu.getSocket(),
+                cpu.isHasIGpu(),
+                cpu.getPcList());
+
+        return  cpuDto;
     }
 
 }

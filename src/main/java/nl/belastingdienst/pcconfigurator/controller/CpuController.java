@@ -1,12 +1,15 @@
 package nl.belastingdienst.pcconfigurator.controller;
 
 import nl.belastingdienst.pcconfigurator.Model.Cpu;
+import nl.belastingdienst.pcconfigurator.dto.CpuDto;
 import nl.belastingdienst.pcconfigurator.exception.NotFoundException;
 import nl.belastingdienst.pcconfigurator.repository.CpuRepository;
 import nl.belastingdienst.pcconfigurator.service.CpuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/cpu")
@@ -16,21 +19,20 @@ public class CpuController {
     private CpuService cpuService;
 
 
-
     @GetMapping("/all")
-    public Iterable<Cpu> getAllCpu() {
-        return cpuService.getAllCpu();
+    public ResponseEntity<List<CpuDto>> getAllCpu() {
+        return ResponseEntity.ok(cpuService.getAllCpu());
     }
 
     @GetMapping
-    public Cpu getCpuById(@RequestParam Long id){
-    return cpuService.getCpuById(id);
+    public ResponseEntity<CpuDto> getCpuById(@RequestParam Long id){
+    return ResponseEntity.ok(cpuService.getCpuById(id));
     }
 
     @PostMapping("/populate")
     public ResponseEntity<Object> autoPopulateDatabase(){
         cpuService.autoPopulateDatabase();
-        return ResponseEntity.ok().build();
+        return ResponseEntity.created(null).build();
     }
 
     @PostMapping
