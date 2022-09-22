@@ -23,7 +23,7 @@ public class Gpu {
     private String suffix;
     private int vram;
 
-    @OneToMany
+    @OneToMany(mappedBy = "pcs")
     private List<Pc> pcList;
 
 

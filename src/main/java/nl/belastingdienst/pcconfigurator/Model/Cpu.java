@@ -25,7 +25,7 @@ public class Cpu {
     private String socket;
     private boolean hasIGpu;
 
-    @OneToMany
+    @OneToMany(mappedBy = "pcs")
     private List<Pc> pcList;
 
 

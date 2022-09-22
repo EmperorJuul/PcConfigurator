@@ -19,7 +19,7 @@ public class Psu {
     private String model;
     private int wattage;
 
-    @OneToMany
+    @OneToMany(mappedBy = "pcs")
     private List<Pc> pcList;
 
     public Psu() {

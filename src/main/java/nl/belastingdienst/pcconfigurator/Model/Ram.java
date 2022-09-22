@@ -21,7 +21,7 @@ public class Ram {
     private int clockSpeed;
     private int size;
 
-    @OneToMany
+    @OneToMany(mappedBy = "pcs")
     private List<Pc> pcList;
 
     public Ram() {

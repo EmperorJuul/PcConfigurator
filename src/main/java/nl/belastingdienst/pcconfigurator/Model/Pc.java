@@ -13,15 +13,19 @@ public class Pc {
     private Long id;
 
     @ManyToOne
+    @JoinColumn(name = "cpus")
     private Cpu cpu;
 
     @ManyToOne
+    @JoinColumn(name = "gpus")
     private Gpu gpu;
 
     @ManyToOne
+    @JoinColumn(name = "psus")
     private Psu psu;
 
     @ManyToOne
+    @JoinColumn(name = "rams")
     private Ram ram;
 
 }
