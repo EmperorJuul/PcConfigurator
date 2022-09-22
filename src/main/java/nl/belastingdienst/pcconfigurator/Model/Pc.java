@@ -5,6 +5,7 @@ import net.bytebuddy.utility.nullability.MaybeNull;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "pcs")
 public class Pc {
 
     @Id

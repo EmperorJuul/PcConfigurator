@@ -9,6 +9,7 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
+@Table(name = "psus")
 public class Psu {
 
     @Id
