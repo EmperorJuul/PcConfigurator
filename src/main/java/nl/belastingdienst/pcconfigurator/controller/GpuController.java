@@ -1,9 +1,7 @@
 package nl.belastingdienst.pcconfigurator.controller;
 
-import nl.belastingdienst.pcconfigurator.Model.Gpu;
+import nl.belastingdienst.pcconfigurator.model.Gpu;
 import nl.belastingdienst.pcconfigurator.dto.GpuDto;
-import nl.belastingdienst.pcconfigurator.exception.NotFoundException;
-import nl.belastingdienst.pcconfigurator.repository.GpuRepository;
 import nl.belastingdienst.pcconfigurator.service.GpuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -26,12 +24,6 @@ public class GpuController {
     @GetMapping
     public ResponseEntity<GpuDto> getGpuById(@RequestParam Long id){
     return ResponseEntity.ok(gpuService.getGpuById(id));
-    }
-
-    @PostMapping("/populate")
-    public ResponseEntity<Object> autoPopulateDatabse(){
-        gpuService.autoPopulateDatabase();
-        return ResponseEntity.created(null).build();
     }
 
     @PostMapping

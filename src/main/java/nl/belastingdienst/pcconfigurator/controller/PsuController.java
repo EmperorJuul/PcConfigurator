@@ -1,9 +1,7 @@
 package nl.belastingdienst.pcconfigurator.controller;
 
-import nl.belastingdienst.pcconfigurator.Model.Psu;
+import nl.belastingdienst.pcconfigurator.model.Psu;
 import nl.belastingdienst.pcconfigurator.dto.PsuDto;
-import nl.belastingdienst.pcconfigurator.exception.NotFoundException;
-import nl.belastingdienst.pcconfigurator.repository.PsuRepository;
 import nl.belastingdienst.pcconfigurator.service.PsuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -26,12 +24,6 @@ public class PsuController {
     @GetMapping()
     public ResponseEntity<PsuDto> getPsuById(@RequestParam Long id){
         return ResponseEntity.ok(psuService.getPsuById(id));
-    }
-
-    @PostMapping("/populate")
-    public ResponseEntity<Object> autoPopulateDatabase(){
-        psuService.autoPopulateDatabase();
-        return ResponseEntity.created(null).build();
     }
 
     @PostMapping

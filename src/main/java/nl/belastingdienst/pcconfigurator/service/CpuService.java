@@ -1,11 +1,10 @@
 package nl.belastingdienst.pcconfigurator.service;
 
-import nl.belastingdienst.pcconfigurator.Model.Cpu;
+import nl.belastingdienst.pcconfigurator.model.Cpu;
 import nl.belastingdienst.pcconfigurator.dto.CpuDto;
 import nl.belastingdienst.pcconfigurator.exception.NotFoundException;
 import nl.belastingdienst.pcconfigurator.repository.CpuRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -28,17 +27,6 @@ public class CpuService {
 
     public CpuDto getCpuById(Long id){
         return fromCpuToCpuDto(cpuRepository.findById(id).orElseThrow(() -> new NotFoundException("No cpu found with this is")));
-    }
-
-    public void autoPopulateDatabase() {
-        Cpu cpu1 = new Cpu("Amd", "Ryzen", 5, 5, 600, "G", "AM4", true);
-        Cpu cpu2 = new Cpu("Intel", "CoreI", 5, 11, 400, "F", "LGA1200", false);
-        Cpu cpu3 = new Cpu("Amd", "Ryzen", 7, 5, 800, "X", "am4", false);
-        Cpu cpu4 = new Cpu("Intel", "CoreI", 7, 12, 700, "K", "LGA1700", false);
-        cpuRepository.save(cpu1);
-        cpuRepository.save(cpu2);
-        cpuRepository.save(cpu3);
-        cpuRepository.save(cpu4);
     }
 
     public void newCpu(Cpu cpu){

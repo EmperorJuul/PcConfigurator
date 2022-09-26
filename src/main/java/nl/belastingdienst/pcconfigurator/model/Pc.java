@@ -1,6 +1,4 @@
-package nl.belastingdienst.pcconfigurator.Model;
-
-import net.bytebuddy.utility.nullability.MaybeNull;
+package nl.belastingdienst.pcconfigurator.model;
 
 import javax.persistence.*;
 

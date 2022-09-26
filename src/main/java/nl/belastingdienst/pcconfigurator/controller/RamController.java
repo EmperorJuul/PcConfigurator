@@ -1,13 +1,9 @@
 package nl.belastingdienst.pcconfigurator.controller;
 
-import nl.belastingdienst.pcconfigurator.Model.Psu;
-import nl.belastingdienst.pcconfigurator.Model.Ram;
+import nl.belastingdienst.pcconfigurator.model.Ram;
 import nl.belastingdienst.pcconfigurator.dto.RamDto;
-import nl.belastingdienst.pcconfigurator.exception.NotFoundException;
-import nl.belastingdienst.pcconfigurator.repository.RamRepository;
 import nl.belastingdienst.pcconfigurator.service.RamService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.aspectj.EnableSpringConfigured;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,12 +24,6 @@ public class RamController {
     @GetMapping()
     public ResponseEntity<RamDto> getRamById(@RequestParam Long id){
         return ResponseEntity.ok(ramService.getRamById(id));
-    }
-
-    @PostMapping("/populate")
-    public ResponseEntity<Object> autoPopulateDatabase(){
-        ramService.autoPopulateDatabase();
-        return ResponseEntity.created(null).build();
     }
 
     @PostMapping

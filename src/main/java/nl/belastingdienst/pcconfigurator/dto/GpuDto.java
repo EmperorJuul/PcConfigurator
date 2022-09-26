@@ -1,10 +1,6 @@
 package nl.belastingdienst.pcconfigurator.dto;
 
-import nl.belastingdienst.pcconfigurator.Model.Pc;
-
-import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
-import java.util.List;
 
 public class GpuDto {
 

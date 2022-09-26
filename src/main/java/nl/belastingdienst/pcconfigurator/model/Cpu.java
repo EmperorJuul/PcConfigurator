@@ -1,4 +1,4 @@
-package nl.belastingdienst.pcconfigurator.Model;
+package nl.belastingdienst.pcconfigurator.model;
 
 import lombok.Getter;
 import lombok.Setter;
