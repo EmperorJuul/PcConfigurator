@@ -50,7 +50,6 @@ public class PsuService {
 
     private PsuDto fromPsuToPsuDto(Psu psu){
         PsuDto psuDto = new PsuDto(
-                psu.getId(),
                 psu.getBrand(),
                 psu.getModel(),
                 psu.getWattage());

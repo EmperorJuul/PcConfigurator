@@ -50,7 +50,6 @@ public class GpuService {
 
     private GpuDto fromGpuToGpuDto(Gpu gpu){
         GpuDto gpuDto = new GpuDto(
-                gpu.getId(),
                 gpu.getBrand(),
                 gpu.getProductLine(),
                 gpu.getGeneration(),

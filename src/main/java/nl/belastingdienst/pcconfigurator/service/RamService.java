@@ -50,7 +50,6 @@ public class RamService {
 
     private RamDto fromRamToRamDto(Ram ram){
         RamDto ramDto = new RamDto(
-                ram.getId(),
                 ram.getBrand(),
                 ram.getProductLine(),
                 ram.getDdr(),

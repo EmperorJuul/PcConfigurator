@@ -50,7 +50,6 @@ public class CpuService {
 
     private CpuDto fromCpuToCpuDto(Cpu cpu){
         CpuDto cpuDto = new CpuDto(
-                cpu.getId(),
                 cpu.getBrand(),
                 cpu.getProductLine(),
                 cpu.getGeneration(),

@@ -1,7 +1,12 @@
 package nl.belastingdienst.pcconfigurator.dto;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.validation.constraints.NotNull;
 
+@Getter
+@Setter
 public class RamDto {
 
     @NotNull
@@ -12,7 +17,7 @@ public class RamDto {
     private int clockSpeed;
     private int size;
 
-    public RamDto(long id, String brand, String productLine, String ddr, int clockSpeed, int size) {
+    public RamDto(String brand, String productLine, String ddr, int clockSpeed, int size) {
         this.id = id;
         this.brand = brand;
         this.productLine = productLine;
@@ -21,51 +26,4 @@ public class RamDto {
         this.size = size;
     }
 
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public String getBrand() {
-        return brand;
-    }
-
-    public void setBrand(String brand) {
-        this.brand = brand;
-    }
-
-    public String getProductLine() {
-        return productLine;
-    }
-
-    public void setProductLine(String productLine) {
-        this.productLine = productLine;
-    }
-
-    public String getDdr() {
-        return ddr;
-    }
-
-    public void setDdr(String ddr) {
-        this.ddr = ddr;
-    }
-
-    public int getClockSpeed() {
-        return clockSpeed;
-    }
-
-    public void setClockSpeed(int clockSpeed) {
-        this.clockSpeed = clockSpeed;
-    }
-
-    public int getSize() {
-        return size;
-    }
-
-    public void setSize(int size) {
-        this.size = size;
-    }
 }
