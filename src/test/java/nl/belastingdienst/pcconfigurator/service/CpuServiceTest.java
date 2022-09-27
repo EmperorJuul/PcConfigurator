@@ -34,17 +34,34 @@ class CpuServiceTest {
         cpu = new Cpu("Amd", "Ryzen", 5, 5, 600, "G", "AM4", true);
     }
 
+
+    @Test
+    public void getAllCpu(){
+    }
+
     @Test
     public void getCpyById(){
+        //arrange
         CpuDto expected = new CpuDto("Amd", "Ryzen", 5, 5, 600, "G", "AM4", true);
 
+        //act
         Mockito
                 .when(cpuRepository.findById(cpu.getId()))
                 .thenReturn(Optional.of(cpu));
 
         CpuDto actual = cpuService.getCpuById(cpu.getId());
 
-        assertEquals(actual, expected);
+        //assert
+        assertEquals(actual.getId(), expected.getId());
+        assertEquals(actual.getBrand(), expected.getBrand());
+        assertEquals(actual.getProductLine(), expected.getProductLine());
+        assertEquals(actual.getGeneration(), expected.getGeneration());
+        assertEquals(actual.getTier(), expected.getTier());
+        assertEquals(actual.getModelNumber(), expected.getModelNumber());
+        assertEquals(actual.getSocket(), expected.getSocket());
+        assertEquals(actual.isHasIGpu(), expected.isHasIGpu());
     }
+
+
 
 }
