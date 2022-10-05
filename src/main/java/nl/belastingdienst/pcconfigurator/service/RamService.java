@@ -55,6 +55,7 @@ public class RamService {
                 ram.getDdr(),
                 ram.getClockSpeed(),
                 ram.getSize());
+        ramDto.setId(ram.getId());
 
         return ramDto;
     }

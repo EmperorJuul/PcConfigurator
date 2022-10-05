@@ -56,7 +56,7 @@ public class GpuService {
                 gpu.getModelNumber(),
                 gpu.getSuffix(),
                 gpu.getVram());
-
+        gpuDto.setId(gpu.getId());
         return gpuDto;
     }
 

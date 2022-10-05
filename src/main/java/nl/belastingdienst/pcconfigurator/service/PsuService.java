@@ -53,6 +53,7 @@ public class PsuService {
                 psu.getBrand(),
                 psu.getModel(),
                 psu.getWattage());
+        psuDto.setId(psu.getId());
 
         return psuDto;
     }

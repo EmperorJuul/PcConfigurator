@@ -58,7 +58,7 @@ public class CpuService {
                 cpu.getSuffix(),
                 cpu.getSocket(),
                 cpu.isHasIGpu());
-
+            cpuDto.setId(cpu.getId());
         return  cpuDto;
     }
 
